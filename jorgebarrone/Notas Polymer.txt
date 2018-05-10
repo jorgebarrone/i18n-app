@@ -1,0 +1,62 @@
+Polymer Notes
+
+estructura del bower.json creado por Polymer
+
+dependencies:
+Aqui se deben incluir las librerias necesarias para que el componente se pueda implementar y funcionar correctamente
+
+
+devDependencies:
+
+Aqui se deben incluir todas las librerias necesarias para desarrollar/probar el componente
+
+
+Estructura HTML
+
+
+
+
+
+
+
+***** Por revisar Datio/APM /
+
+
+
+
+
+Realizar el componente multilenguaje
+Componente
+Todos tendremos que hacer nuestro propio componente 
+react/node/mongo/firebase
+
+
+Hacer un componente no visual que lea un archivo json (con un fragmento de un articulo/libro en 3 idiomas) con iron-ajax
+que se implemente en la aplicación esqueleto del repositorio de Alfonso
+crear una carpeta data que contiene un archivo es.json (para español) en.json(para ingles) pr.jason (para portugues)
+{
+
+}
+
+En la aplicación 
+agregar una propiedad que se llame lang conde el dafault sea español
+y conforme se cambie en la aplicacion esa propiedad llamar a iron-ajax para renderizar nueamente el texto de acuerdo al
+lang seleccionado
+
+Crear un componente en my component que va a cambiar el idioma - que va a recibir y que archivo json va a leer
+como event cada que se ejecute
+escucharlo en la aplicacion y se propague en el menu view1 view2 view2
+
+es decir crear un customEvent para podernos traer el contenido de acuerdo al lenguaje en el objeto {}detail del customEvent
+El componente myComponent debe estar en myApp  y poder "bindear" el contenido de lenguajes
+
+estructura de
+
+apliccion de algunas etiquetas(Web componentes) de Polymer
+app-route
+
+A las 4:00 pm del 10 de mayo subir el componente en el estado que se encuentre
+
+
+
+ej <h1>[[content.title]]</h1>

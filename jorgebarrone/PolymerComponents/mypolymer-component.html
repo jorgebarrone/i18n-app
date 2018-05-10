@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<!-- Aqui importamos el Web Component paper-input descargado con bower -->
+<link rel="import" href="../paper-input/paper-input.html" >
+
+<!-- Aqui importamos el Web Component paper-button descargado con bower -->
+<link rel="import" href="../paper-button/paper-button.html" >
+
+<dom-module id="mypolymer-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button.indigo {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+    </style>
+    <h2>Hello [[getTitle()]]! el valor de prop2 es [[prop2]]</h2>
+    <div on-text-append="notifyUser">
+      <paper-input label="Nombre Completo" on-text-append="insertText" ></paper-input>
+      <paper-input label="Nombre Completo" on-value-changed="someChange" ></paper-input>
+
+      <paper-button raised class="indigo" on-click="insertText"> Mi boton de Polymer</paper-button>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `mypolymer-component`
+     * My first Polymer Component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MypolymerComponent extends Polymer.Element {
+      static get is() { return 'mypolymer-component'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'mypolymer-component'
+          },
+          prop2: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.set('prop1', 'Hola curso');
+      }
+      getTitle() {
+        return 'Titulo de la práctica';
+      }
+      someChange(event){
+        console.log(event.detail.value);
+      }
+      insertText(event) {
+        this.set('prop1', 'Nuevo Titulo');
+        this.dispatchEvent(new CustomEvent('text-append', {
+          composed: true,
+          bubbles: true
+        }));
+      }
+
+      notifyUser(event) {
+        alert();
+      }
+
+    }
+
+    window.customElements.define(MypolymerComponent.is, MypolymerComponent);
+  </script>
+</dom-module>

@@ -1,0 +1,42 @@
+Review de ECS6
+
+let 
+const
+arrow functions
+modules
+for in
+for of
+maps
+
+ej: maps
+
+const map = new Map();
+map.set('1', 'algo');
+map.set('2', 'nada');
+map.set('3', 'algo');
+
+promises
+
+const promise = new Promise((resolve, reject) = > {
+  if() {
+     resolve(true);
+  } else {
+      reject({
+        code = 'ERR001'
+      })
+  }
+});
+
+promise.then(--RESOLVED--).catch(--REJECTED--);
+
+promise
+  .then()
+  .catch()
+
+
+
+fetch(...)
+.then(response => {
+})
+.then()
+.catch()
