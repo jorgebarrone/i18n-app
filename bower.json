@@ -20,7 +20,8 @@
     "neon-animation": "PolymerElements/neon-animation#^2.2.1",
     "paper-item": "PolymerElements/paper-item#^2.1.1",
     "paper-listbox": "PolymerElements/paper-listbox#^2.1.1",
-    "paper-tabs": "PolymerElements/paper-tabs#^2.1.1"
+    "paper-tabs": "PolymerElements/paper-tabs#^2.1.1",
+    "paper-spinner": "PolymerElements/paper-spinner#^2.1.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"

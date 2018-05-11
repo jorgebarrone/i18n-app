@@ -8,12 +8,20 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<!-- <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../bower_components/neon-animation/web-animations.html"> -->
+
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
-<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<!-- <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html"> -->
+<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html"> -->
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
+
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -28,26 +36,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <div class="circle">1</div>
+      <div hidden$="[[!cargando]]">Estamos cargando datos...</div>
+      <paper-spinner alt="Cargando el usuario..." active="[[cargando]]"></paper-spinner>
       <div>
-          <h1>View One</h1>
-          <paper-dropdown-menu label="Idiomas">
-              <paper-listbox slot="dropdown-content" selected="1">
-                  <paper-item>Español</paper-item>
-                  <paper-item>Inglés</paper-item>
-                  <paper-item>Alemán</paper-item>
-              </paper-listbox>
-          </paper-dropdown-menu>
-          <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-          <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+          <h1>[[data.title]]</h1>
+          <p>[[data.content]]</p>
+          <!-- <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+          <p>[[data.content]]<p> -->
+
+        <paper-dropdown-menu id="langSelector" no-animations label="Idiomas" on-iron-select="changeLang" >
+            <paper-listbox slot="dropdown-content" selected="1">
+                <paper-item lang="es">Español</paper-item>
+                <paper-item lang="en">Ingles</paper-item>
+                <paper-item lang="gr">Aleman</paper-item>
+            </paper-listbox>
+        </paper-dropdown-menu>
+
       </div>
+
+
+
+
+
+      <!-- <paper-listbox>
+        <paper-item>Español</paper-item>
+        <paper-item>Ingles</paper-item>
+        <paper-item>Aleman</paper-item>
+      </paper-listbox> -->
+
+      <iron-ajax
+         id="myAjax"
+         url="/lang/[[lang]].json"
+         handle-as="json"
+         last-response="{{data}}"
+         loading="{{cargando}}"
+
+      ></iron-ajax>
+
     </div>
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
+      static get properties () {
+        return {
+          lang: {
+            type: String,
+            value: ''
+          }
+        }
+      }
+      changeLang(event) {
+        this.set('lang', event.detail.item.lang);
+      this.$.myAjax.generateRequest();
+    }
+
     }
 
     window.customElements.define(MyView1.is, MyView1);
   </script>
+
 </dom-module>
