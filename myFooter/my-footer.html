@@ -5,11 +5,6 @@
 <dom-module id="my-footer">
   <template>
     <style>
-      :host {
-        display: flex;
-        background-color: #38d7dc;
-        font-size: 2 em;
-      }
       .text-white {
         color: #fff
       }
@@ -19,14 +14,27 @@
       .my-images {
         height: 30px;
       }
+      .container {
+        background-color: #38d7dc;
+        display: flex;
+        flex-direction: row;
+      }
+      .section {
+        display: flex;
+        flex-direction: column;
+      }
     </style>
-    <template is="dom-repeat" items="{{sections}}">
-      <img class="my-images" src="[[item.arrImage]]" />
-      <br>
-      <section class="text-white">[[item.arrTitle]]</section>
-      <br>
-      <section class="text-gray">[[item.arrText]]</section>
-    </template>
+    <div class="container">
+      <template is="dom-repeat" items="[[sections]]" as="section">
+        <div class="section">
+          <img class="my-images" src="[[section.arrImage]]" />
+          <br>
+          <section class="text-white">[[section.arrTitle]]</section>
+          <br>
+          <section class="text-gray">[[section.arrText]]</section>
+        </div>
+      </template>
+    </div>
   </template>
 
   <script>
@@ -48,12 +56,7 @@
           },
           sections: {
             type: Array,
-            value () {
-              return [
-                {arrTitle: '', arrImage: '', arrText: ''},
-                {arrTitle: '', arrImage: '', arrText: ''},
-              ];
-            }
+            value: []
           }
         };
       }
