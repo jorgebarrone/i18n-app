@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-bind.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="my-footer">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        background-color: #38d7dc;
+        font-size: 2 em;
+      }
+      .text-white {
+        color: #fff
+      }
+      .text-gray {
+        color: gray;
+      }
+      .my-images {
+        height: 30px;
+      }
+    </style>
+    <template is="dom-repeat" items="{{sections}}">
+      <img class="my-images" src="[[item.arrImage]]" />
+      <br>
+      <section class="text-white">[[item.arrTitle]]</section>
+      <br>
+      <section class="text-gray">[[item.arrText]]</section>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `my-footer`
+     * My Polymer Footer exercise
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MyFooter extends Polymer.Element {
+      static get is() { return 'my-footer'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'my-footer'
+          },
+          sections: {
+            type: Array,
+            value () {
+              return [
+                {arrTitle: '', arrImage: '', arrText: ''},
+                {arrTitle: '', arrImage: '', arrText: ''},
+              ];
+            }
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MyFooter.is, MyFooter);
+  </script>
+</dom-module>
