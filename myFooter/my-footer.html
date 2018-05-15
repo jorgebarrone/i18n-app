@@ -6,32 +6,41 @@
   <template>
     <style>
       .text-white {
-        color: #fff
+        color: #fff;
+        font-size: 1.5em;
       }
       .text-gray {
         color: gray;
-      }
-      .my-images {
-        height: 30px;
+        font-size: 1em;
       }
       .container {
         background-color: #38d7dc;
+        padding: 1em 1em 1em 1em;
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
       }
       .section {
-        display: flex;
-        flex-direction: column;
+        padding: 1em 1em 1em 1em;
+        flex: 1 0 25%;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+      .myimages {
+        height: 50px;
+        align-self: center;
+        justify-content: center;
       }
     </style>
     <div class="container">
       <template is="dom-repeat" items="[[sections]]" as="section">
         <div class="section">
-          <img class="my-images" src="[[section.arrImage]]" />
-          <br>
-          <section class="text-white">[[section.arrTitle]]</section>
-          <br>
-          <section class="text-gray">[[section.arrText]]</section>
+          <img class="myimages" src="[[section.arrImage]]" />
+          <article class="text-white">[[section.arrTitle]]</article>
+          <article class="text-gray"><p>[[section.arrText]]</p></article>
         </div>
       </template>
     </div>
